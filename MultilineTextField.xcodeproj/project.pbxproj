@@ -12,6 +12,10 @@
 		CC0E81802A94412A000C8897 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC0E817F2A94412A000C8897 /* Assets.xcassets */; };
 		CC0E81842A94412A000C8897 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC0E81832A94412A000C8897 /* Preview Assets.xcassets */; };
 		CC0E818B2A94422F000C8897 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0E818A2A94422F000C8897 /* MultilineTextField.swift */; };
+		CC0E81BC2A94B374000C8897 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = CC0E81BB2A94B374000C8897 /* SwiftUIIntrospect */; };
+		CC0E81BE2A94B3DC000C8897 /* MultilineTextFieldItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0E81BD2A94B3DC000C8897 /* MultilineTextFieldItemViewModel.swift */; };
+		CC0E81C02A94B3F3000C8897 /* MultilinTextData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0E81BF2A94B3F3000C8897 /* MultilinTextData.swift */; };
+		CC0E81C22A94B40E000C8897 /* MultilineTextFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0E81C12A94B40E000C8897 /* MultilineTextFieldViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,9 @@
 		CC0E81812A94412A000C8897 /* MultilineTextField.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MultilineTextField.entitlements; sourceTree = "<group>"; };
 		CC0E81832A94412A000C8897 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CC0E818A2A94422F000C8897 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
+		CC0E81BD2A94B3DC000C8897 /* MultilineTextFieldItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextFieldItemViewModel.swift; sourceTree = "<group>"; };
+		CC0E81BF2A94B3F3000C8897 /* MultilinTextData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilinTextData.swift; sourceTree = "<group>"; };
+		CC0E81C12A94B40E000C8897 /* MultilineTextFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextFieldViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC0E81BC2A94B374000C8897 /* SwiftUIIntrospect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +68,9 @@
 				CC0E81812A94412A000C8897 /* MultilineTextField.entitlements */,
 				CC0E81822A94412A000C8897 /* Preview Content */,
 				CC0E818A2A94422F000C8897 /* MultilineTextField.swift */,
+				CC0E81BF2A94B3F3000C8897 /* MultilinTextData.swift */,
+				CC0E81C12A94B40E000C8897 /* MultilineTextFieldViewModel.swift */,
+				CC0E81BD2A94B3DC000C8897 /* MultilineTextFieldItemViewModel.swift */,
 			);
 			path = MultilineTextField;
 			sourceTree = "<group>";
@@ -88,6 +99,9 @@
 			dependencies = (
 			);
 			name = MultilineTextField;
+			packageProductDependencies = (
+				CC0E81BB2A94B374000C8897 /* SwiftUIIntrospect */,
+			);
 			productName = MultilineTextField;
 			productReference = CC0E81782A94412A000C8897 /* MultilineTextField.app */;
 			productType = "com.apple.product-type.application";
@@ -116,6 +130,9 @@
 				Base,
 			);
 			mainGroup = CC0E816F2A94412A000C8897;
+			packageReferences = (
+				CC0E81BA2A94B374000C8897 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+			);
 			productRefGroup = CC0E81792A94412A000C8897 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -142,9 +159,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC0E81C22A94B40E000C8897 /* MultilineTextFieldViewModel.swift in Sources */,
 				CC0E818B2A94422F000C8897 /* MultilineTextField.swift in Sources */,
 				CC0E817E2A94412A000C8897 /* ContentView.swift in Sources */,
 				CC0E817C2A94412A000C8897 /* MultilineTextFieldApp.swift in Sources */,
+				CC0E81BE2A94B3DC000C8897 /* MultilineTextFieldItemViewModel.swift in Sources */,
+				CC0E81C02A94B3F3000C8897 /* MultilinTextData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +221,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -253,6 +274,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -283,7 +305,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
@@ -291,7 +313,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hsb9kr.MultilineTextField;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -321,7 +345,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
@@ -329,7 +353,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hsb9kr.MultilineTextField;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -358,6 +384,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CC0E81BA2A94B374000C8897 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.11.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CC0E81BB2A94B374000C8897 /* SwiftUIIntrospect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC0E81BA2A94B374000C8897 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = SwiftUIIntrospect;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CC0E81702A94412A000C8897 /* Project object */;
 }

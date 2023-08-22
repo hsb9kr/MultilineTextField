@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import SwiftUIIntrospect
 
 struct MultilineTextField: View {
     
@@ -41,7 +42,9 @@ struct MultilineTextField: View {
                         viewModel.viewModels.last?.focused = true
                         return
                     }
-                    let itemViewModel: MultilineTextFieldItemViewModel = .init(font: regularFontSize)
+                    let itemViewModel: MultilineTextFieldItemViewModel = .init(font: regularFontSize, onRemove: { viewModel in
+                        self.viewModel.onRemove(viewModel: viewModel)
+                    })
                     viewModel.viewModels.append(itemViewModel)
                     itemViewModel.focused = true
                 }
@@ -88,6 +91,12 @@ struct MultilineTextField: View {
                 Spacer()
             }
         }
+        .onAppear {
+            UITextView.appearance().backgroundColor = .clear
+        }
+        .onDisappear {
+            UITextView.appearance().backgroundColor = nil
+        }
     }
     
     struct ItemView: View {
@@ -95,80 +104,56 @@ struct MultilineTextField: View {
         @EnvironmentObject var parentViewModel: MultilineTextFieldViewModel
         @ObservedObject var viewModel: MultilineTextFieldItemViewModel
         @FocusState private var focused: Bool
+        @State var height: CGFloat = 0
         
         var body: some View {
-            TextField("", text: $viewModel.text, axis: .vertical)
-                .font(viewModel.displayFont)
-                .focused($focused)
-                .onChange(of: focused) { focused in
-                    viewModel.focused = focused
-                    if focused {
-                        parentViewModel.focused = viewModel
+            if #available(iOS 16.0, *) {
+                TextField("", text: $viewModel.text, axis: .vertical)
+                    .introspect(.textEditor, on: .iOS(.v16)) { view in
+                        view.delegate = viewModel
                     }
-                }
-                .onReceive(viewModel.$focused) { value in
-                    if value && value != focused {
-                        focused = true
+                    .font(viewModel.displayFont)
+                    .focused($focused)
+                    .onChange(of: focused) { focused in
+                        viewModel.focused = focused
+                        if focused {
+                            parentViewModel.focused = viewModel
+                        }
                     }
-                }
+                    .onReceive(viewModel.$focused) { value in
+                        if value && value != focused {
+                            focused = true
+                        }
+                    }
+                    .onReceive(viewModel.$text) { text in
+                        debugPrint(text)
+                    }
+                    
+            } else {
+                TextEditor(text: $viewModel.text)
+                    .introspect(.textEditor, on: .iOS(.v15)) { view in
+                        view.delegate = viewModel
+                        view.isScrollEnabled = false
+                        view.textContainer.lineFragmentPadding = 0
+                        view.textContainerInset = .zero
+                        view.contentInset = .zero
+                    }
+                    .frame(height: viewModel.height)
+                    .font(viewModel.displayFont)
+                    .focused($focused)
+                    .onChange(of: focused) { focused in
+                        viewModel.focused = focused
+                        if focused {
+                            parentViewModel.focused = viewModel
+                        }
+                    }
+                    .onReceive(viewModel.$focused) { value in
+                        if value && value != focused {
+                            focused = true
+                        }
+                    }
+            }
         }
-    }
-}
-
-class MultilineTextFieldItemViewModel: ObservableObject {
-    
-    @Published var text: String = ""
-    @Published var bold = false
-    @Published var fontSize: CGFloat
-    @Published var focused: Bool = false
-    var data: MultilinTextData {
-        .init(bold: bold, fontSize: fontSize, text: text)
-    }
-    
-    var displayFont: Font {
-        let font = Font.system(
-           size: CGFloat(fontSize),
-             weight: bold == true ? .bold : .regular)
-        return font
-    }
-    
-    init(font size: CGFloat) {
-        self.fontSize = size
-    }
-}
-
-class MultilineTextFieldViewModel: ObservableObject {
-    private var cancellables: Set<AnyCancellable> = []
-    @Published var viewModels: [MultilineTextFieldItemViewModel]
-    @Published var focused: MultilineTextFieldItemViewModel?
-    
-    init(font size: CGFloat, onChanged: @escaping ([MultilinTextData]) -> Void) {
-        viewModels = [.init(font: size)]
-        $viewModels
-            .flatMap { viewModels in
-                let textPublisher = Publishers
-                    .MergeMany(viewModels
-                        .compactMap { $0.$text })
-                        .map { _ in () }
-                let boldPublisher = Publishers
-                    .MergeMany(viewModels
-                        .compactMap { $0.$bold })
-                        .map { _ in () }
-                let fontSizePublisher = Publishers
-                    .MergeMany(viewModels
-                        .compactMap { $0.$fontSize })
-                        .map { _ in () }
-                return Publishers
-                    .Merge3(textPublisher, boldPublisher, fontSizePublisher)
-                    .dropFirst(3)
-            }
-            .receive(on: RunLoop.main)
-            .sink { [weak self] _ in
-                guard let `self` = self else { return }
-                let data: [MultilinTextData] = self.viewModels.map { $0.data }
-                onChanged(data)
-            }
-            .store(in: &cancellables)
     }
 }
 
@@ -178,10 +163,4 @@ struct MultilineTextField_Previews: PreviewProvider {
             
         }
     }
-}
-
-struct MultilinTextData {
-    let bold: Bool
-    let fontSize: CGFloat
-    let text: String
 }

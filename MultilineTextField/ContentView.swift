@@ -12,15 +12,13 @@ struct ContentView: View {
     @State var text: String = ""
     
     var body: some View {
-        ScrollView {
+        VStack {
             MultilineTextField() { data in
-                debugPrint(data)
+                
             }
         }
-//        VStack {
-    //        MultilineTextField()
-//        }
-//        .padding()
+        .padding()
+        .background(Color.red)
     }
 }
 
