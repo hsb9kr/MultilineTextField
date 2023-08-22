@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
+import Combine
 
 class MultilineTextFieldItemViewModel: NSObject, ObservableObject {
     
     private let onRemove: (MultilineTextFieldItemViewModel) -> Void
+    private var cancellables: Set<AnyCancellable> = []
     @Published var text: String = ""
     @Published var bold = false
     @Published var fontSize: CGFloat
     @Published var focused: Bool = false
     @Published var height: CGFloat = 17
+    var textView: UITextView?
     var data: MultilinTextData {
         .init(bold: bold, fontSize: fontSize, text: text)
     }
@@ -30,6 +33,16 @@ class MultilineTextFieldItemViewModel: NSObject, ObservableObject {
         self.onRemove = onRemove
         self.fontSize = size
         super.init()
+        $bold
+            .combineLatest($fontSize)
+            .sink { [weak self] _ in
+                guard let `self` = self else { return }
+                guard let textView = self.textView else {
+                    return
+                }
+                self.sizeToFit(textView: textView)
+            }
+            .store(in: &cancellables)
     }
 }
 
@@ -56,7 +69,6 @@ extension MultilineTextFieldItemViewModel: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         text = textView.text
         sizeToFit(textView: textView)
-        debugPrint("textViewDidChange height: \(height)")
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {

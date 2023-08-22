@@ -125,10 +125,6 @@ struct MultilineTextField: View {
                             focused = true
                         }
                     }
-                    .onReceive(viewModel.$text) { text in
-                        debugPrint(text)
-                    }
-                    
             } else {
                 TextEditor(text: $viewModel.text)
                     .introspect(.textEditor, on: .iOS(.v15)) { view in
@@ -137,6 +133,7 @@ struct MultilineTextField: View {
                         view.textContainer.lineFragmentPadding = 0
                         view.textContainerInset = .zero
                         view.contentInset = .zero
+                        viewModel.textView = view
                     }
                     .frame(height: viewModel.height)
                     .font(viewModel.displayFont)
