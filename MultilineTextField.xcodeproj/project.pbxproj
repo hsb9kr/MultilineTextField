@@ -11,6 +11,7 @@
 		CC0E817E2A94412A000C8897 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0E817D2A94412A000C8897 /* ContentView.swift */; };
 		CC0E81802A94412A000C8897 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC0E817F2A94412A000C8897 /* Assets.xcassets */; };
 		CC0E81842A94412A000C8897 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC0E81832A94412A000C8897 /* Preview Assets.xcassets */; };
+		CC0E818B2A94422F000C8897 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0E818A2A94422F000C8897 /* MultilineTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		CC0E817F2A94412A000C8897 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC0E81812A94412A000C8897 /* MultilineTextField.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MultilineTextField.entitlements; sourceTree = "<group>"; };
 		CC0E81832A94412A000C8897 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CC0E818A2A94422F000C8897 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				CC0E817F2A94412A000C8897 /* Assets.xcassets */,
 				CC0E81812A94412A000C8897 /* MultilineTextField.entitlements */,
 				CC0E81822A94412A000C8897 /* Preview Content */,
+				CC0E818A2A94422F000C8897 /* MultilineTextField.swift */,
 			);
 			path = MultilineTextField;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC0E818B2A94422F000C8897 /* MultilineTextField.swift in Sources */,
 				CC0E817E2A94412A000C8897 /* ContentView.swift in Sources */,
 				CC0E817C2A94412A000C8897 /* MultilineTextFieldApp.swift in Sources */,
 			);

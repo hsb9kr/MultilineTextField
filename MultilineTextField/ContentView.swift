@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var text: String = ""
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        ScrollView {
+            MultilineTextField() { data in
+                debugPrint(data)
+            }
         }
-        .padding()
+//        VStack {
+    //        MultilineTextField()
+//        }
+//        .padding()
     }
 }
 
